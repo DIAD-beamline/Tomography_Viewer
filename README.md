@@ -18,7 +18,7 @@ Graphical jupyter notebook for live manual tomography data inspection and recons
 
 3. Launch Jupyter Lab:
    ```bash
-   jupyter lab
+   jupyter notebook
    ```
 
 This will open Jupyter Lab in your default web browser. Navigate to the notebook file to begin working with the tomography viewer.
