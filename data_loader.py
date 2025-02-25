@@ -21,6 +21,7 @@ def is_tomography_scan(filepath):
 
 class NXSDataLoader:
     def __init__(self, visit_number, year):
+        self.filepath = None
         """Initialize the data loader widget for a specific visit."""
         self.nexus_path = get_nexus_path(visit_number, year)
         self.current_data = None
@@ -121,10 +122,10 @@ class NXSDataLoader:
     def _on_load_click(self, b):
         """Handle load button clicks"""
         try:
-            filepath = self.get_selected_file()
-            self.status_label.value = f'Loading data from {filepath}...'
+            self.filepath = self.get_selected_file()
+            self.status_label.value = f'Loading data from {self.filepath}...'
             
-            with h5py.File(filepath, 'r') as f:
+            with h5py.File(self.filepath, 'r') as f:
                 # Load the data and ensure it's uint16
                 raw_data = f['entry/imaging/data'][:]
                 self.current_data = np.asarray(raw_data, dtype=np.uint16)
